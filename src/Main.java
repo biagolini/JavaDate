@@ -1,9 +1,39 @@
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.Scanner;
 
-
 public class Main {
+
+    public static void main(String[] args) {
+        start();
+    }
+
+    public static String formatRow(String str) {
+        return str
+                .replace('|', '\u2502')
+                .replace('!', '\u250c')
+                .replace('@', '\u252c')
+                .replace('#', '\u2510')
+                .replace('$', '\u251c')
+                .replace('*', '\u253c')
+                .replace('(', '\u2524')
+                .replace(')', '\u2514')
+                .replace('+', '\u2534')
+                .replace('^', '\u2518')
+                .replace('-', '\u2500');
+    }
+
+    private static void printData(Calendar calendar){
+        System.out.println(formatRow("!---------!-----------#"));
+        System.out.println(formatRow("|   id    | Valor     |"));
+        System.out.println(formatRow("$---------*-----------("));
+        System.out.println(formatRow("|   Ano   | "+ calendar.get(Calendar.YEAR)+"      |"));
+        System.out.println(formatRow("|   Mês   | "+ calendar.get(Calendar.MONTH)+"         |"));
+        System.out.println(formatRow("|   Dia   | "+ calendar.get(Calendar.DAY_OF_MONTH)+"         |"));
+        System.out.println(formatRow("|   Hora  | "+ calendar.get(Calendar.HOUR)+"         |"));
+        System.out.println(formatRow("|   Min   | "+ calendar.get(Calendar.MINUTE)+"         |"));
+        System.out.println(formatRow("|   Seg   | "+ calendar.get(Calendar.SECOND)+"         |"));
+        System.out.println(formatRow(")---------+-----------^"));
+    }
 
     private static void start(){
         int quantidade, opcao;
@@ -31,7 +61,7 @@ public class Main {
         calendar.set(ano,mes,dia,hora,minuto,segundo);
 
         do {
-            System.out.println("\n\tDigite a opção desejada:\n");
+            System.out.print("\n\tDigite a opção desejada:\n");
             System.out.printf("Escolha uma opção:\n" +
                     "\t1) Adicionar dia;\n"+
                     "\t2) Adicionar meses;\n"+
@@ -47,71 +77,53 @@ public class Main {
                     break;
 
                 case 1:
-                    System.out.println("Informe um valor:");
+                    System.out.print("Informe um valor:");
                     quantidade = scanner.nextInt();
                     calendar.set(Calendar.DAY_OF_MONTH, calendar.get(calendar.DAY_OF_MONTH)+quantidade);
                     printData(calendar);
                     break;
 
                 case 2:
-                    System.out.println("Informe um valor:");
+                    System.out.print("Informe um valor:");
                     quantidade = scanner.nextInt();
                     calendar.set(Calendar.MONTH, calendar.get(calendar.MONTH)+quantidade);
                     printData(calendar);
                     break;
 
                 case 3:
-                    System.out.println("Informe um valor:");
+                    System.out.print("Informe um valor:");
                     quantidade = scanner.nextInt();
                     calendar.set(Calendar.YEAR, calendar.get(calendar.YEAR)+quantidade);
                     printData(calendar);
                     break;
 
-
                 case 4:
-                    System.out.println("Informe um valor:");
+                    System.out.print("Informe um valor:");
                     quantidade = scanner.nextInt();
                     calendar.set(Calendar.DAY_OF_MONTH, calendar.get(calendar.DAY_OF_MONTH)-quantidade);
                     printData(calendar);
                     break;
 
                 case 5:
-                    System.out.println("Informe um valor:");
+                    System.out.print("Informe um valor:");
                     quantidade = scanner.nextInt();
                     calendar.set(Calendar.MONTH, calendar.get(calendar.MONTH)-quantidade);
                     printData(calendar);
                     break;
 
                 case 6:
-                    System.out.println("Informe um valor:");
+                    System.out.print("Informe um valor:");
                     quantidade = scanner.nextInt();
                     calendar.set(Calendar.YEAR, calendar.get(calendar.YEAR)-quantidade);
                     printData(calendar);
                     break;
 
-                default: System.out.println("Opção inválida.");
+                default: System.out.print("Opção inválida.");
                     break;
             }
         }while(opcao!=0);
         scanner.close();
-        System.out.println("\n\tAté breve!");
-    }
-
-
-    private static void printData(Calendar calendar){
-        System.out.println("\nA data atualizada é:".toUpperCase());
-        System.out.println("\nAno:" + calendar.get(Calendar.YEAR));
-        System.out.println("\nMes:" + calendar.get(Calendar.MONTH));
-        System.out.println("\nDia:" + calendar.get(Calendar.DAY_OF_MONTH));
-        System.out.println("\nHorario:" + calendar.get(Calendar.HOUR));
-        System.out.println("\nMinuto:" + calendar.get(Calendar.MINUTE));
-        System.out.println("\nSegundo:" + calendar.get(Calendar.SECOND));
-    }
-
-
-    public static void main(String[] args) {
-        start();
-
+        System.out.print("\n\tAté breve!");
     }
 
 }
